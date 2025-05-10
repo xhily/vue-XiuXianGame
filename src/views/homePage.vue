@@ -2098,6 +2098,10 @@ export default {
         justify-content: center;
     }
 
+    .dialog-footer .el-button {
+        margin: 0;
+    }
+
     .dialog-upload {
         margin: 0;
     }
