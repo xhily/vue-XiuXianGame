@@ -4,7 +4,8 @@
             <div class="realm-display">
                 当前境界：<span class="realm-text" v-text="`${$levelNames(player.level)}(${player.reincarnation || 0}转)`" />
             </div>
-            <el-progress :percentage="cultivationPercentage" text-inside :stroke-width="20" status="success" class="custom-progress" />
+            <el-progress :percentage="cultivationPercentage" 
+            :format="percentage => `${percentage.toFixed(2)}%`" text-inside :stroke-width="20" status="success" class="custom-progress" />
         </div>
         <div class="storyText">
             <div class="storyText-box">
