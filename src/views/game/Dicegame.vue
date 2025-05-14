@@ -126,32 +126,28 @@ onMounted(() => {
 }
 
 .dice-1 {
-  background-image: url(@/assets/dice1.svg);
+  background-image: url(../../assets/dice1.svg);
 }
 
 .dice-2 {
-  background-image: url(@/assets/dice2.svg);
+  background-image: url(../../assets/dice2.svg);
 }
 
 .dice-3 {
-  background-image: url(@/assets/dice3.svg);
+  background-image: url(../../assets/dice3.svg);
 }
-
 
 .dice-4 {
-  background-image: url(@/assets/dice4.svg);
+  background-image: url(../../assets/dice4.svg);
 }
-
 
 .dice-5 {
-  background-image: url(@/assets/dice5.svg);
+  background-image: url(../../assets/dice5.svg);
 }
-
 
 .dice-6 {
-  background-image: url(@/assets/dice6.svg);
+  background-image: url(../../assets/dice6.svg);
 }
-
 
 .rolling {
   animation: roll 0.1s linear infinite;
