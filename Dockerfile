@@ -2,8 +2,9 @@
 FROM node:20.19.0-alpine3.21 AS build
 WORKDIR /app
 COPY . .
-RUN npm install && \
-npm run build
+RUN npm install -g pnpm && \
+pnpm install \
+pnpm run build
 
 # 运行阶段
 FROM svenstaro/miniserve:0.29.0-alpine AS runtime

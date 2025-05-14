@@ -18,7 +18,7 @@ Docker贡献者：
 
 - wuchenchina [无尘](https://github.com/wuchenchina)
 - CoolXiTech [酷曦科技](https://github.com/CoolXiTech)
-- Firfe[Firfr](https://github.com/Firfr)
+- Firfe [Firfr](https://github.com/Firfr)
   
 鸣谢以上开源项目及贡献者，排名不分先后.
 
