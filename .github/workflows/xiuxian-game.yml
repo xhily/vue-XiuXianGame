@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: 构建Docker镜像
-        run: docker build -t ghcr.io/${{ github.repository_owner }}/vue-XiuXianGame:latest .
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest .
 
       - name: 推送到 GitHub Container Registry
-        run: docker push ghcr.io/${{ github.repository_owner }}/vue-XiuXianGame:latest
+        run: docker push ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest
