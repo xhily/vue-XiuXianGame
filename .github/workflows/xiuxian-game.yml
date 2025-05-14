@@ -21,7 +21,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 构建Docker镜像
         run: docker build -t ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest .
