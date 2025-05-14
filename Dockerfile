@@ -1,17 +1,16 @@
-FROM node:latest
+FROM node:20.19.0-alpine3.21 AS build
+WORKDIR /app
+COPY . .
+RUN npm config set registry https://registry.npmmirror.com && \
+    npm install && \
+    npm run build
 
-RUN mkdir -p /workspace
+FROM svenstaro/miniserve:0.29.0-alpine AS runtime
+# 设置端口
+ENV MINISERVE_PORT=8080
+WORKDIR /app
+COPY --from=build /app/dist /app
 
-WORKDIR /workspace
+EXPOSE 8080
 
-RUN npm config set registry https://registry.npmmirror.com
-
-RUN cd /workspace
-
-RUN git clone https://mirror.ghproxy.com/https://github.com/setube/vue-XiuXianGame.git
-
-RUN mv ./vue-XiuXianGame/* . ; rm -rf ./vue-XiuXianGame/
-
-RUN npm install -g pnpm ; pnpm install ; npx vite build
-
-CMD ["npx", "vite", "preview", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["--index", "/app/index.html"]

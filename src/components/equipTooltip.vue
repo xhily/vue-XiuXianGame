@@ -2,29 +2,37 @@
   <div class="attributes">
     <div class="attribute-box">
       <div class="tag attribute">
-        气血: {{ $formatNumberToChineseUnit(strengthenInfo.health) }}
+        气血: {{ formatNumberToChineseUnit(strengthenInfo.health) }}
       </div>
       <div class="tag attribute">
-        攻击: {{ $formatNumberToChineseUnit(strengthenInfo.attack) }}
+        攻击: {{ formatNumberToChineseUnit(strengthenInfo.attack) }}
       </div>
       <div class="tag attribute">
-        防御: {{ $formatNumberToChineseUnit(strengthenInfo.defense) }}
+        防御: {{ formatNumberToChineseUnit(strengthenInfo.defense) }}
       </div>
       <div class="tag attribute">
-        暴击率: {{ strengthenInfo?.critical > 0 ? (strengthenInfo?.critical * 100 > 100 ? 100 : (strengthenInfo?.critical * 100).toFixed(2)) : 0  }}%
+        暴击率:
+        {{ strengthenInfo?.critical > 0 ? strengthenInfo?.critical * 100 > 100 ? 100 : (strengthenInfo?.critical *
+          100).toFixed(2) : 0 }}%
       </div>
       <div class="tag attribute">
-        闪避率: {{ strengthenInfo.dodge > 0 ? (strengthenInfo.dodge * 100 > 100 ? 100 : (strengthenInfo.dodge * 100).toFixed(2)) : 0 }}%
+        闪避率: {{ strengthenInfo.dodge > 0 ? strengthenInfo.dodge * 100 > 100 ? 100 : (strengthenInfo.dodge *
+          100).toFixed(2) :
+          0 }}%
       </div>
       <div class="tag attribute">
         炼器等级: {{ strengthenInfo.strengthen ?? 0 }}
       </div>
       <div class="tag attribute">
-        装备评分: {{ $formatNumberToChineseUnit(strengthenInfo.score) }}
+        装备评分: {{ formatNumberToChineseUnit(strengthenInfo.score) }}
       </div>
-      <div class="tag attribute"
-           @click="$notifys({title: '获得方式', message: '分解装备可获取', position: 'top-left'})" v-if="calculateCost">
-        拥有炼器石: {{ $formatNumberToChineseUnit(player.props.strengtheningStone) }}
+      <div class="tag attribute" @click="gameNotifys({
+        title: '获得方式',
+        message: '分解装备可获取',
+        position: 'top-left',
+      })" v-if="calculateCost">
+        拥有炼器石:
+        {{ formatNumberToChineseUnit(player.props.strengtheningStone) }}
       </div>
       <div class="tag attribute" v-if="calculateCost">
         炼器消耗: {{ calculateCost }}
@@ -35,19 +43,25 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: 'weapon-tooltip',
-  props: {
-    calculateCost: {},
-    calculateEnhanceSuccessRate: {},
-    player: {},
-    strengthenInfo: {}
-  }
-}
+
+<script setup>
+import { formatNumberToChineseUnit, gameNotifys } from '@/plugins/game'
+import { defineProps, defineOptions } from 'vue'
+
+// 定义组件名称
+defineOptions({
+  name: 'weapon-tooltip'
+})
+
+// 定义props
+defineProps({
+  calculateCost: {},
+  calculateEnhanceSuccessRate: {},
+  player: {},
+  strengthenInfo: {},
+})
 </script>
 <style scoped>
-
 .attribute {
   width: calc(50% - 8px);
   margin: 4px;
@@ -83,14 +97,10 @@ export default {
   margin-bottom: 10px;
 }
 
-@media only screen and (max-width: 768px) {
-
-}
+@media only screen and (max-width: 768px) {}
 </style>
 <style>
-
 @media only screen and (max-width: 768px) {
-
   /* 新手弹窗 */
 }
 
