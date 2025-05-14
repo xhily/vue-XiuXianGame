@@ -80,7 +80,7 @@ export default defineConfig({
     }),
     vitePluginBundleObfuscator({
       log: false,
-      enable: true,
+      enable: true, 
       options: {
         log: false,
         compact: true,
