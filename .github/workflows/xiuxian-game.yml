@@ -21,9 +21,8 @@ jobs:
 
       - name: 设置Docker Buildx
         uses: docker/setup-buildx-action@v2
-        # 您可以尝试只保留最常用的平台，例如 linux/amd64 和 linux/arm64
         with:
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64 # 严格限制这两个
 
       - name: 登录 GitHub Container Registry
         uses: docker/login-action@v2
@@ -33,9 +32,9 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: 构建并推送多架构Docker镜像
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v3 # 或者考虑升级到 v4 或 v5，如果可用
         with:
           context: .
-          platforms: linux/amd64,linux/arm6
+          platforms: linux/amd64,linux/arm64 # 严格与上面保持一致
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest
