@@ -28,7 +28,7 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:amd64-latest
+          tags: ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:amd64
 
   build-arm64:
     runs-on: ubuntu-22.04-arm
@@ -52,7 +52,7 @@ jobs:
           context: .
           platforms: linux/arm64
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:arm64-latest
+          tags: ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:arm64
 
   create-manifest:
     needs: [build-amd64, build-arm64]
@@ -69,7 +69,8 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: 创建并推送多架构清单
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest
+        run: |
+          docker manifest create ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest \
+            ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:amd64 \
+            ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:arm64
+          docker manifest push ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest
