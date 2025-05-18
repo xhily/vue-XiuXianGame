@@ -68,23 +68,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-      - name: 启用 Docker CLI 实验性功能
-        run: |
-          mkdir -p ~/.docker
-          echo '{"experimental": "enabled"}' > ~/.docker/config.json
-
       - name: 创建并推送多架构清单
         run: |
           docker manifest create ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest \
             ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:amd64 \
             ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:arm64
-
-          docker manifest annotate ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest \
-            ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:amd64 \
-            --os linux --arch amd64
-          
-          docker manifest annotate ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest \
-            ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:arm64 \
-            --os linux --arch arm64
-          
           docker manifest push ghcr.io/${{ github.repository_owner }}/vue-xiuxiangame:latest
