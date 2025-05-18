@@ -6,7 +6,7 @@ RUN npm install && \
 npm run build
 
 # 运行阶段
-FROM node:alpine AS runtime
+FROM node:20-alpine AS runtime
 WORKDIR /app
 COPY --from=build /app/dist /app
 RUN npm install -g http-server
