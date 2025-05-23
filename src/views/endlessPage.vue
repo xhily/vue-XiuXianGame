@@ -297,7 +297,7 @@ const toggleAutoFight = () => {
   // 切换自动战斗状态
   isAutoFighting.value = !isAutoFighting.value
   // 启动自动战斗
-  if (isAutoFighting.value) autoFightInterval.value = setInterval(fight.value, 1000)
+  if (isAutoFighting.value) autoFightInterval.value = setInterval(fight, 1000)
   // 停止自动战斗
   else stopAutoFight()
 }

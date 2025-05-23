@@ -428,8 +428,8 @@
         <div class="click-box">
           <el-checkbox v-model="protect" label="炼器保护" />
           <el-checkbox v-model="increase" label="炼器增幅" />
-          <el-button type="primary" @click="enhance(strengthenInfo)">
-            点击炼器
+          <el-button type="primary" :disabled="strengthenInfo.strengthen === 30" @click="enhance(strengthenInfo)">
+            {{ strengthenInfo.strengthen === 30 ? '炼器等级已满' : '点击炼器' }}
           </el-button>
         </div>
       </div>
@@ -454,7 +454,7 @@
             </span>
             <span class="value">
               {{ calculateDifference(petInfo?.reincarnation, player.pet?.reincarnation).num }}
-              </span>
+            </span>
           </p>
           <p>
             <span class="description">气血: {{ petInfo?.health }}</span>
@@ -901,9 +901,9 @@ import achievement from '@/plugins/achievement'
 import equipTooltip from '@/components/equipTooltip.vue'
 import { ElMessageBox } from 'element-plus'
 import { useMainStore } from '@/plugins/store'
-import { 
-  maxLv, dropdownType, levelNames, 
-  formatNumberToChineseUnit, genre, levels, 
+import {
+  maxLv, dropdownType, levelNames,
+  formatNumberToChineseUnit, genre, levels,
   gameNotifys, propItemNames, dropdownTypeObject
 } from '@/plugins/game'
 
@@ -1479,9 +1479,9 @@ const enhance = (item) => {
   // 炼器成功率
   const successRate = calculateEnhanceSuccessRate(item)
   // 炼器消耗道具数量
-  const calculateCost = calculateCost(item)
+  const calculate = calculateCost(item)
   // 如果炼器石不足
-  if (calculateCost > player.value.props.strengtheningStone) {
+  if (calculate > player.value.props.strengtheningStone) {
     // 发送通知
     gameNotifys({
       title: '炼器提示',
@@ -1504,8 +1504,7 @@ const enhance = (item) => {
   ElMessageBox.confirm(item.strengthen >= 15 && !protect.value ? `当前装备炼器等级已达到+${item.strengthen}, 如果炼器失败该装备会销毁, 请问还需要炼器吗?` : '你确定要炼器吗?', '炼器提示', {
     cancelButtonText: '我点错了',
     confirmButtonText: '确定以及肯定',
-  }
-  ).then(() => {
+  }).then(() => {
     // 如果炼器成功
     if (Math.random() <= successRate) {
       // 攻击
@@ -1567,9 +1566,10 @@ const enhance = (item) => {
       })
     }
     // 扣除炼器石
-    player.value.props.strengtheningStone -= calculateCost
+    player.value.props.strengtheningStone -= calculate
   }).catch(() => { })
 }
+
 // 计算炼器所需消耗的道具数量
 const calculateCost = (item) => {
   // 炼器基础消耗
@@ -1768,6 +1768,7 @@ const wifeUpgrade = (item) => {
     player.value.props.qingyuan -= consume
   }).catch(() => { })
 }
+
 // 计算灵宠升级所需消耗
 const petConsumption = (lv) => {
   // 是否勾选转生选项
@@ -1776,6 +1777,7 @@ const petConsumption = (lv) => {
   const reincarnation = player.value.pet.reincarnation ? lv * 200 : 1
   return (lv * 200 + reincarnation) * cost
 }
+
 // 购买装备
 const shopBuy = (item) => {
   if (player.value.props.currency >= shopPrice.value) {
@@ -1786,7 +1788,8 @@ const shopBuy = (item) => {
     // 添加到背包
     else player.value.inventory.push(item)
     // 跳转背包相关页
-    inventoryActive.value = item.type
+    inventoryActive.value = 'equipment'
+    equipmentActive.value = item.type
     gameNotifys({
       title: '购买提示',
       message: `您成功花费${shopPrice.value}鸿蒙石购买${item.name}`,
@@ -2549,7 +2552,7 @@ const illustrationsInfo = (i, ii) => {
 }
 
 .el-collapse-item__content,
-.el-collapse-item div[role='tab'] {
+.el-collapse-item div[role="tab"] {
   display: flex;
   justify-content: center;
 }
