@@ -1484,7 +1484,6 @@ const calculateDifference = (item1, item2) => {
 
 // 炼器
 const enhance = (item) => {
-  console.log('开始炼器', item);
   // 炼器成功率
   const successRate = calculateEnhanceSuccessRate(item)
   // 炼器消耗道具数量
