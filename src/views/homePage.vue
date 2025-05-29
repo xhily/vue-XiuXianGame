@@ -1020,7 +1020,7 @@ const sortedProps = computed(() => {
 
 onMounted(() => {
   achievementAll.value = achievement.all()
-  illustrationsItems.value = equipAll.drawPrize()
+  illustrationsItems.value = equipAll.drawPrize(maxLv)
   startGame()
 })
 
