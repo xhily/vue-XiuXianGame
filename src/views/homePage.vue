@@ -422,7 +422,7 @@
     </el-drawer>
     <el-drawer title="炼器" v-model="strengthenShow" direction="rtl" class="strengthen">
       <div class="strengthen-box" v-if="strengthenShow">
-        <equip-tooltip :calculate-cost="calculateCost(strengthenInfo)"
+        <equip-tooltip :calculate-cost="calcEhanceCost(strengthenInfo)"
           :calculate-enhance-success-rate="calculateEnhanceSuccessRate(strengthenInfo)" :player="player"
           :strengthen-info="strengthenInfo" />
         <div class="click-box">
@@ -1476,10 +1476,12 @@ const calculateDifference = (item1, item2) => {
 
 // 炼器
 const enhance = (item) => {
+  console.log('开始炼器', item);
+  debugger
   // 炼器成功率
   const successRate = calculateEnhanceSuccessRate(item)
   // 炼器消耗道具数量
-  const calculateCost = calculateCost(item)
+  const calculateCost = calcEhanceCost(item)
   // 如果炼器石不足
   if (calculateCost > player.value.props.strengtheningStone) {
     // 发送通知
@@ -1571,7 +1573,7 @@ const enhance = (item) => {
   }).catch(() => { })
 }
 // 计算炼器所需消耗的道具数量
-const calculateCost = (item) => {
+const calcEhanceCost = (item) => {
   // 炼器基础消耗
   let baseCost = item.level * 5
   // 每级炼器需要增加的消耗
