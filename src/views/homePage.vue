@@ -422,15 +422,23 @@
     </el-drawer>
     <el-drawer title="炼器" v-model="strengthenShow" direction="rtl" class="strengthen">
       <div class="strengthen-box" v-if="strengthenShow">
-        <equip-tooltip :calculate-cost="calculateCost(strengthenInfo)"
+        <equip-tooltip :calculate-cost="calcEnhanceCost(strengthenInfo)"
           :calculate-enhance-success-rate="calculateEnhanceSuccessRate(strengthenInfo)" :player="player"
           :strengthen-info="strengthenInfo" />
         <div class="click-box">
           <el-checkbox v-model="protect" label="炼器保护" />
           <el-checkbox v-model="increase" label="炼器增幅" />
-          <el-button type="primary" :disabled="strengthenInfo.strengthen === 30" @click="enhance(strengthenInfo)">
-            {{ strengthenInfo.strengthen === 30 ? '炼器等级已满' : '点击炼器' }}
-          </el-button>
+          <el-popover
+            trigger="hover"
+            :width="350"
+            content="炼器等级大于等于15级时没有炼器保护，强化失败装备会被销毁"
+            placement="bottom">
+            <template #reference>
+              <el-button type="primary" @click="enhance(strengthenInfo)">
+                点击炼器
+              </el-button>
+            </template>
+          </el-popover>
         </div>
       </div>
     </el-drawer>
@@ -1012,7 +1020,7 @@ const sortedProps = computed(() => {
 
 onMounted(() => {
   achievementAll.value = achievement.all()
-  illustrationsItems.value = equipAll.drawPrize()
+  illustrationsItems.value = equipAll.drawPrize(maxLv)
   startGame()
 })
 
@@ -1479,7 +1487,7 @@ const enhance = (item) => {
   // 炼器成功率
   const successRate = calculateEnhanceSuccessRate(item)
   // 炼器消耗道具数量
-  const calculate = calculateCost(item)
+  const calculateCost = calcEnhanceCost(item)
   // 如果炼器石不足
   if (calculate > player.value.props.strengtheningStone) {
     // 发送通知
@@ -1563,6 +1571,7 @@ const enhance = (item) => {
         title: '炼器提示',
         message: item.strengthen >= 15 && !protect.value ? '炼器失败, 装备已自动销毁' : '炼器失败',
         position: 'top-left',
+        type: 'error',
       })
     }
     // 扣除炼器石
@@ -1571,7 +1580,7 @@ const enhance = (item) => {
 }
 
 // 计算炼器所需消耗的道具数量
-const calculateCost = (item) => {
+const calcEnhanceCost = (item) => {
   // 炼器基础消耗
   let baseCost = item.level * 5
   // 每级炼器需要增加的消耗
