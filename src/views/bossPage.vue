@@ -86,7 +86,7 @@ const openBossInfo = () => {
       <p>防御: ${formatNumberToChineseUnit(info.defense)}</p>
       <p>闪避率: ${info.dodge > 0 ? (info.dodge * 100 > 100 ? 100 : (info.dodge * 100).toFixed(2)) : 0}%</p>
       <p>暴击率: ${info.critical > 0 ? (info.critical * 100 > 100 ? 100 : (info.critical * 100).toFixed(2)) : 0}%</p>
-      <p>鸿蒙石掉落: ${currency.value}颗</p>
+      <p>鸿蒙石掉落: ${currency.value}块</p>
       <p>神装掉落率: 100%</p>
       </div>
     </div>`,
@@ -150,7 +150,7 @@ const fightBoss = () => {
     guashaRounds.value--
     // boss气血小于等于0
     if (store.boss.health <= 0) {
-      const equipItem = store.boss.boss_Equip(maxLv)
+      const equipItem = boss.boss_Equip(maxLv)
       isequipment.value = true
       equipmentInfo.value = equipItem
       texts.value.push(`你击败${store.boss.name}后，获得了<span class="el-tag el-tag--${equipItem.quality}">${levels[equipItem.quality]}${equipItem.name}(${genre[equipItem.type]})</span>`)
@@ -215,7 +215,9 @@ const openEquipmentInfo = (item) => {
     showClose: false,
     closeOnClickModal: false,
     closeOnPressEscape: false,
-    dangerouslyUseHTMLString: true
+    dangerouslyUseHTMLString: true,
+    showCancelButton: false,
+    confirmButtonText: '知道了'
   }).then(() => {
     router.push('/home')
   }).catch(() => {
