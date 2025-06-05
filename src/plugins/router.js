@@ -13,70 +13,70 @@ const routes = [
     path: '/',
     name: 'index',
     meta: {
-      keepAlive: false,
+      keepAlive: false
     },
-    component: index,
+    component: index
   },
   {
     path: '/home',
     name: 'home',
     meta: {
-      keepAlive: false,
+      keepAlive: false
     },
-    component: home,
+    component: home
   },
   {
     path: '/cultivate',
     name: 'cultivate',
     meta: {
-      keepAlive: false,
+      keepAlive: false
     },
-    component: cultivate,
+    component: cultivate
   },
   {
     path: '/map',
     name: 'map',
     meta: {
-      keepAlive: false,
+      keepAlive: false
     },
-    component: map,
+    component: map
   },
   {
     path: '/explore',
     name: 'explore',
     meta: {
-      keepAlive: false,
+      keepAlive: false
     },
-    component: explore,
+    component: explore
   },
   {
     path: '/boss',
     name: 'boss',
     meta: {
-      keepAlive: false,
+      keepAlive: false
     },
-    component: boss,
+    component: boss
   },
   {
     path: '/endlesstower',
     name: 'endlesstower',
     meta: {
-      keepAlive: false,
+      keepAlive: false
     },
-    component: endlesstower,
+    component: endlesstower
   },
   {
     path: '/game',
     name: 'game',
     meta: {
-      keepAlive: false,
+      keepAlive: false
     },
-    component: game,
-  },
+    component: game
+  }
 ]
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes
 })
 
 export default router

@@ -11,22 +11,24 @@
 ## 我的文字修仙全靠刷
 
 - 项目框架 [Vue.js](https://cn.vuejs.org)
-- 项目UI [Element Plus](https://element-plus.org/zh-CN)
+- 项目 UI [Element Plus](https://element-plus.org/zh-CN)
 - 状态管理库 [Pinia](https://pinia.vuejs.org/zh)
-  
-Docker贡献者：
+
+Docker 贡献者：
 
 - wuchenchina [无尘](https://github.com/wuchenchina)
 - CoolXiTech [酷曦科技](https://github.com/CoolXiTech)
 - Firfr [Firfe](https://github.com/Firfr)
-  
+
 鸣谢以上开源项目及贡献者，排名不分先后.
 
 ## 快速开始
+
 - [本地安装指南](https://github.com/setube/vue-xiuxiangame/wiki/%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97)
 - [Docker 部署指南](https://github.com/setube/vue-xiuxiangame/wiki/Docker%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97)
 
 ## 版权声明
+
 知识共享署名-非商业性使用 4.0 国际许可协议
 
 本作品采用知识共享署名-非商业性使用 4.0 国际许可协议进行许可。
@@ -48,6 +50,7 @@ Docker贡献者：
 本授权条款不得被视为或解释为对任何版权的放弃或其他限制。
 
 当您分享本作品的改编版本时，您必须：
+
 - 在显著位置标注原作者的署名
 - 保留本许可协议文档
 - 明确说明修改内容及修改日期

@@ -16,7 +16,7 @@ export const useMainStore = defineStore('main', {
       conquer: false,
       defense: 0,
       critical: 0,
-      maxhealth: 0,
+      maxhealth: 0
     },
     // 玩家属性
     player: {
@@ -37,7 +37,7 @@ export const useMainStore = defineStore('main', {
         rootBone: 0,
         currency: 0,
         cultivateDan: 0,
-        strengtheningStone: 0,
+        strengtheningStone: 0
       },
       score: 0,
       level: 0,
@@ -58,12 +58,12 @@ export const useMainStore = defineStore('main', {
         sutra: {},
         armor: {},
         weapon: {},
-        accessory: {},
+        accessory: {}
       },
       achievement: {
         pet: [],
         monster: [],
-        equipment: [],
+        equipment: []
       },
       script: '',
       cultivation: 0,
@@ -79,7 +79,7 @@ export const useMainStore = defineStore('main', {
         dice: null,
         fortune: null,
         secretrealm: 0,
-        gamblingStone: null,
+        gamblingStone: null
       },
       gameWins: 0,
       gameLosses: 0,
@@ -87,7 +87,7 @@ export const useMainStore = defineStore('main', {
       checkinStreak: 0,
       lastCheckinDate: null,
       fortuneTellingDate: null,
-      checkedInToday: false,
+      checkedInToday: false
     },
     // 怪物信息
     monster: {
@@ -101,34 +101,34 @@ export const useMainStore = defineStore('main', {
       // 闪避率
       dodge: 0,
       // 暴击
-      critical: 0,
+      critical: 0
     },
     mapData: {
       y: 0,
       x: 0,
-      map: [],
+      map: []
     },
     mapScroll: 0,
-    fishingMap: [],
+    fishingMap: []
   }),
   persist: {
     key: 'vuex',
     paths: ['boss', 'player'],
     storage: localStorage,
     serializer: {
-      serialize: (state) => {
+      serialize: state => {
         return JSON.stringify({
           boss: crypto.encryption(state.boss),
-          player: crypto.encryption(state.player),
+          player: crypto.encryption(state.player)
         })
       },
-      deserialize: (value) => {
+      deserialize: value => {
         const state = JSON.parse(value)
         return {
           boss: crypto.decryption(state.boss),
-          player: crypto.decryption(state.player),
+          player: crypto.decryption(state.player)
         }
-      },
-    },
-  },
+      }
+    }
+  }
 })

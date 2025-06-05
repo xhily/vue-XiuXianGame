@@ -15,12 +15,12 @@ export default defineConfig({
     minify: 'terser',
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
+        manualChunks: id => {
           if (id.includes('node_modules')) return 'vendor'
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: (assetInfo) => {
+        assetFileNames: assetInfo => {
           if (assetInfo.name && assetInfo.name.endsWith('.ico')) return '[name].[ext]'
           return 'assets/[ext]/[name]-[hash].[ext]'
         }
@@ -80,7 +80,7 @@ export default defineConfig({
     }),
     vitePluginBundleObfuscator({
       log: false,
-      enable: true, 
+      enable: true,
       options: {
         log: false,
         compact: true,

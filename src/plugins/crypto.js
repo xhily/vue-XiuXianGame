@@ -20,7 +20,7 @@ const crypto = {
       padding: CryptoJS.pad.Pkcs7
     }).toString(CryptoJS.enc.Utf8)
     return JSON.parse(player)
-  },
+  }
 }
 
 export default crypto

@@ -136,7 +136,7 @@ const achievement = {
         award: 10000,
         condition: {
           highestTowerFloor: 100
-        },
+        }
       },
       {
         id: 8,
