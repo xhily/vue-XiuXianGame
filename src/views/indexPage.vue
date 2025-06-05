@@ -1,10 +1,8 @@
 <template>
   <div class="index">
     <div class="index2">
-      <el-button class="button" @click="goHome"> 开始游戏 </el-button>
-      <el-button class="button" @click="dialogVisible = true">
-        隐私政策
-      </el-button>
+      <el-button class="button" @click="goHome">开始游戏</el-button>
+      <el-button class="button" @click="dialogVisible = true">隐私政策</el-button>
     </div>
     <el-dialog v-model="dialogVisible" :lock-scroll="false" title="隐私政策" width="420px">
       <div class="custom-html md-stream-desktop">
@@ -53,9 +51,7 @@
             </p>
           </el-collapse-item>
           <el-divider>结语</el-divider>
-          <p>
-            感谢您游玩本游戏！我们承诺将继续努力，为您带来安全、愉快的游戏体验。
-          </p>
+          <p>感谢您游玩本游戏！我们承诺将继续努力，为您带来安全、愉快的游戏体验。</p>
         </el-collapse>
       </div>
       <template #footer>
@@ -69,60 +65,60 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { useMainStore } from '@/plugins/store'
-import { ElNotification } from 'element-plus'
+  import { ref, onMounted } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { useMainStore } from '@/plugins/store'
+  import { ElNotification } from 'element-plus'
 
-const router = useRouter()
-const local = useMainStore()
-const player = ref({})
-const activeName = ref('')
-const dialogVisible = ref(true)
+  const router = useRouter()
+  const local = useMainStore()
+  const player = ref({})
+  const activeName = ref('')
+  const dialogVisible = ref(true)
 
-const zhengce = (bool) => {
-  if (bool) router.push('/home')
-  else ElNotification({ title: '提示', message: '未同意隐私政策无法进入游戏' })
-  player.value.zc = bool
-  dialogVisible.value = false
-}
-
-const goHome = () => {
-  if (!player.value.zc) {
-    ElNotification({ title: '提示', message: '未同意隐私政策无法进入游戏' })
-    return
+  const zhengce = bool => {
+    if (bool) router.push('/home')
+    else ElNotification({ title: '提示', message: '未同意隐私政策无法进入游戏' })
+    player.value.zc = bool
+    dialogVisible.value = false
   }
-  router.push('/home')
-}
 
-onMounted(() => {
-  if (local) {
-    player.value = local.player
-    player.value.zc = player.value.zc ? player.value.zc : false
-    dialogVisible.value = !player.value.zc
+  const goHome = () => {
+    if (!player.value.zc) {
+      ElNotification({ title: '提示', message: '未同意隐私政策无法进入游戏' })
+      return
+    }
+    router.push('/home')
   }
-  if (location.host != 'appassets.androidplatform.net' || player.value.zc) router.push('/home')
-})
+
+  onMounted(() => {
+    if (local) {
+      player.value = local.player
+      player.value.zc = player.value.zc ? player.value.zc : false
+      dialogVisible.value = !player.value.zc
+    }
+    if (location.host != 'appassets.androidplatform.net' || player.value.zc) router.push('/home')
+  })
 </script>
 <style scoped>
-.index {
-  position: relative;
-  min-height: 574px;
-}
-
-@media only screen and (max-width: 768px) {
-  .index2 {
-    display: grid;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+  .index {
+    position: relative;
+    min-height: 574px;
   }
 
-  .index2 .button {
-    margin-top: 50px;
-    width: 100%;
-    margin-left: 0;
+  @media only screen and (max-width: 768px) {
+    .index2 {
+      display: grid;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .index2 .button {
+      margin-top: 50px;
+      width: 100%;
+      margin-left: 0;
+    }
   }
-}
 </style>

@@ -12,7 +12,7 @@ export default {
       damage *= 1.5
       isCritical = true
     }
-    // 返回计算结果，包括伤害值，暴击状态和命中状态 
+    // 返回计算结果，包括伤害值，暴击状态和命中状态
     return { damage, isCritical, isHit: true }
   },
   executeCombatRound(attacker, defender) {
