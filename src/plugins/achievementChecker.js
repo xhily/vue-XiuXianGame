@@ -27,7 +27,7 @@ const checkPetAchievements = (player, pet, newAchievements) => {
   })
 }
 
-const checkMonsterAchievements = (player) => {
+const checkMonsterAchievements = player => {
   const monsterAchievements = achievement.monster()
   monsterAchievements.forEach(item => {
     if (!player.achievement.monster.find(i => i.id === item.id) && checkCondition(item.condition, player)) {

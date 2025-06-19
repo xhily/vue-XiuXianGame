@@ -3,7 +3,7 @@ FROM node:lts AS build
 WORKDIR /app
 COPY . .
 RUN npm install && \
-npm run build
+  npm run build
 
 # 运行阶段
 FROM node:lts AS runtime 

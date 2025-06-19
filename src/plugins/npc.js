@@ -10,10 +10,10 @@ const npc = {
       '瑶光雪姬',
       '琉璃雪姬',
       '幽篁雪姬',
-      '雪舞灵姬',
+      '雪舞灵姬'
     ]
     return names
-  },
+  }
   // 随机输出数组中的10个对象
   // getRandomObjects () {
   //     const names = [
