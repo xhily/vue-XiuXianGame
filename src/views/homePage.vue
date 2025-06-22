@@ -1616,45 +1616,6 @@
     sellingEquipmentShow.value = true
   }
 
-  // 穿装备
-  const equipItem = (id, type) => {
-    const inventoryItem = getObjectById(id, player.value.inventory)
-    // 如果当前装备境界大于人物的境界
-    if (!player.value.reincarnation && inventoryItem.level > player.value.level) {
-      gameNotifys({ title: '当前境界不足', message: '无法穿戴该装备' })
-      return
-    }
-    // 如果当前类型的装备已经穿戴，则将其放回背包
-    if (JSON.stringify(player.value.equipment[type]) != '{}') {
-      const equipment = player.value.equipment[type]
-      // 更新玩家属性，移除当前穿戴装备的属性加成
-      playerAttribute(
-        -equipment?.dodge,
-        -equipment?.attack,
-        -equipment?.health,
-        -equipment?.critical,
-        -equipment?.defense
-      )
-      // 将当前装备放回背包
-      player.value.inventory.push(equipment)
-    }
-    // 装备新装备
-    player.value.equipment[type] = inventoryItem
-    // 更新玩家属性，添加当前装备的属性加成
-    playerAttribute(
-      inventoryItem.dodge,
-      inventoryItem.attack,
-      inventoryItem.health,
-      inventoryItem.critical,
-      inventoryItem.defense
-    )
-    // 从背包中移除新装备
-    player.value.inventory = player.value.inventory.filter(item => item.id !== id)
-    // 重置类型
-    type = ''
-    // 关闭道具信息弹窗
-    inventoryShow.value = false
-  }
   // 道具锁定or道具解锁
   const inventoryLock = id => {
     let inventoryItem = getObjectById(id, player.value.inventory)
@@ -2217,6 +2178,7 @@
       })
       .catch(() => {})
   }
+
   // 分解装备
   const inventoryClose = item => {
     ElMessageBox.confirm(
@@ -2247,20 +2209,24 @@
       })
       .catch(() => {})
   }
+
   // 根据装备ID给出信息
   const getObjectById = (id, arr) => {
     return arr.find(obj => obj.id === id)
   }
+
   // 道具信息
   const inventory = id => {
     inventoryInfo.value = getObjectById(id, player.value.inventory)
     inventoryShow.value = true
   }
+
   // 灵宠信息
   const petItemInfo = item => {
     petShow.value = true
     petInfo.value = item
   }
+
   // 灵宠收回
   const petRetract = () => {
     const item = player.value.pet
@@ -2311,6 +2277,7 @@
       player.value.defense
     )
   }
+
   // 卸装备
   const equipmentClose = type => {
     const { inventory, equipment } = player.value
@@ -2325,12 +2292,54 @@
     )
     // 跳转背包相关页
     equipmentActive.value = type
-    // 给装备增加id
+    // 更新装备ID
     equipment[type].id = Date.now()
     // 添加装备到背包里
     inventory.push(equipment[type])
     // 清空身上当前类型的装备
     equipment[type] = {}
+  }
+
+  // 穿装备
+  const equipItem = (id, type) => {
+    const inventoryItem = getObjectById(id, player.value.inventory)
+    // 如果当前装备境界大于人物的境界
+    if (!player.value.reincarnation && inventoryItem.level > player.value.level) {
+      gameNotifys({ title: '当前境界不足', message: '无法穿戴该装备' })
+      return
+    }
+    // 如果当前类型的装备已经穿戴，则将其放回背包
+    if (JSON.stringify(player.value.equipment[type]) != '{}') {
+      const equipment = player.value.equipment[type]
+      // 更新玩家属性，移除当前穿戴装备的属性加成
+      playerAttribute(
+        -equipment?.dodge,
+        -equipment?.attack,
+        -equipment?.health,
+        -equipment?.critical,
+        -equipment?.defense
+      )
+      // 将当前装备放回背包
+      player.value.inventory.push(equipment)
+    }
+    // 装备新装备
+    player.value.equipment[type] = inventoryItem
+    // 更新玩家属性，添加当前装备的属性加成
+    playerAttribute(
+      inventoryItem.dodge,
+      inventoryItem.attack,
+      inventoryItem.health,
+      inventoryItem.critical,
+      inventoryItem.defense
+    )
+    console.log(player.value.inventory)
+    // 从背包中移除新装备
+    player.value.inventory = player.value.inventory.filter(item => item.id && item.id !== id)
+    // 重置类型
+    type = ''
+    console.log(player.value.inventory)
+    // 关闭道具信息弹窗
+    inventoryShow.value = false
   }
 
   //获取角色当前装备

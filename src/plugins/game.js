@@ -7,38 +7,20 @@ export const gameNotifys = data => {
   ElNotification(data)
 }
 
+// prettier-ignore
 export const levelNames = level => {
   const levelsPerStage = 9
   const stageIndex = Math.floor((level - 1) / levelsPerStage)
   const stageLevel = ((level - 1) % levelsPerStage) + 1
   const numberName = {
-    1: '一',
-    2: '二',
-    3: '三',
-    4: '四',
-    5: '五',
-    6: '六',
-    7: '七',
-    8: '八',
-    9: '九'
+    1: '一', 2: '二', 3: '三', 4: '四',
+    5: '五', 6: '六', 7: '七', 8: '八', 9: '九'
   }
   const stageNames = [
-    '筑基',
-    '开光',
-    '胎息',
-    '辟谷',
-    '金丹',
-    '元婴',
-    '出窍',
-    '分神',
-    '合体',
-    '大乘',
-    '渡劫',
-    '地仙',
-    '天仙',
-    '金仙',
-    '大罗金仙',
-    '九天玄仙'
+    '筑基', '开光', '胎息', '辟谷',
+    '金丹', '元婴', '出窍', '分神',
+    '合体', '大乘', '渡劫', '地仙',
+    '天仙', '金仙', '大罗金仙', '九天玄仙'
   ]
   if (level === 0) return '凡人'
   else if (level >= maxLv) return '九天玄仙九层'
