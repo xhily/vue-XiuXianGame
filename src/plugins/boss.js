@@ -27,6 +27,7 @@ const boss = {
     }
   },
   // boss掉落
+  // prettier-ignore
   boss_Equip(lv) {
     const weapon = [
       '赤焰凤凰剑', '血玉红莲枪', '烈焰焚天弓', '赤霄神火戟', '火舞流云扇',
@@ -77,7 +78,7 @@ const boss = {
             attack: ['weapon', 'accessory', 'sutra'].includes(quality) ? Attack : 0, // 攻击力
             health: ['armor', 'accessory', 'sutra'].includes(quality) ? Health : 0, // 血量
             defense: ['accessory', 'sutra'].includes(quality) ? defense : 0, // 装备防御
-            critical: ['weapon', 'accessory', 'sutra'].includes(quality) ? Criticalhitrate : 0, // 暴击率
+            critical: ['weapon', 'accessory', 'sutra'].includes(quality) ? Criticalhitrate : 0 // 暴击率
           },
           defense: ['armor', 'accessory', 'sutra'].includes(quality) ? defense : 0, // 装备防御
           critical: ['weapon', 'accessory', 'sutra'].includes(quality) ? Criticalhitrate : 0 // 暴击率
@@ -111,6 +112,7 @@ const boss = {
     ]
     return text[Math.floor(Math.random() * text.length)]
   },
+  // prettier-ignore
   boss_Names() {
     const boss = [
       { name: '烛龙神尊', description: '乃钟山之神，睁眼为昼，闭眼为夜，呼吸间风云变幻，掌控着时间的流转。' },
@@ -145,13 +147,12 @@ const boss = {
       dodgeRate: 1.6 //闪避
     }
     // 计算评分
-    const score = (
+    const score =
       dodge * weights.dodgeRate +
       attack * weights.attack +
       (health / 100) * weights.health +
       defense * weights.defense +
       critical * weights.critRate
-    )
     return Math.floor(score)
   }
 }

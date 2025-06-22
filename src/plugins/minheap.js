@@ -17,9 +17,10 @@ class MinHeap {
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2)
       // 如果父节点的优先级小于等于当前节点的优先级，则堆的性质已经满足
-      if (this.heap[parentIndex].priority <= this.heap[index].priority) break
-      // 交换当前节点与父节点的位置
-      [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]]
+      if (this.heap[parentIndex].priority <= this.heap[index].priority)
+        break
+        // 交换当前节点与父节点的位置
+      ;[this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]]
       // 更新当前节点的索引为其父节点的索引
       index = parentIndex
     }
@@ -58,12 +59,13 @@ class MinHeap {
         if (
           (swapIndex === null && this.heap[rightChildIndex].priority < element.priority) ||
           (swapIndex !== null && this.heap[rightChildIndex].priority < this.heap[leftChildIndex].priority)
-        ) swapIndex = rightChildIndex
+        )
+          swapIndex = rightChildIndex
       }
       // 如果没有需要交换的子节点，退出循环
       if (swapIndex === null) break
       // 交换当前节点与选择的子节点的位置
-      [this.heap[index], this.heap[swapIndex]] = [this.heap[swapIndex], this.heap[index]]
+      ;[this.heap[index], this.heap[swapIndex]] = [this.heap[swapIndex], this.heap[index]]
       // 更新当前节点的索引为交换后子节点的索引
       index = swapIndex
     }

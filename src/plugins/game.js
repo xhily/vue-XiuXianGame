@@ -2,12 +2,13 @@ import { ElNotification } from 'element-plus'
 
 export const maxLv = 144
 
-export const gameNotifys = (data) => {
+export const gameNotifys = data => {
   ElNotification.closeAll()
   ElNotification(data)
 }
 
-export const levelNames = (level) => {
+// prettier-ignore
+export const levelNames = level => {
   const levelsPerStage = 9
   const stageIndex = Math.floor((level - 1) / levelsPerStage)
   const stageLevel = ((level - 1) % levelsPerStage) + 1
@@ -34,17 +35,15 @@ export const dropdownTypeObject = {
   attack: '攻击',
   defense: '防御',
   critical: '暴击',
-  dodge: '闪避',
+  dodge: '闪避'
 }
-export const dropdownType = Object.entries(dropdownTypeObject).map(
-  ([type, name]) => ({ type, name })
-)
+export const dropdownType = Object.entries(dropdownTypeObject).map(([type, name]) => ({ type, name }))
 
 export const genre = {
   sutra: '法器',
   armor: '护甲',
   weapon: '神兵',
-  accessory: '灵宝',
+  accessory: '灵宝'
 }
 
 export const isAPP = location.host == 'appassets.androidplatform.net'
@@ -56,7 +55,7 @@ export const levels = {
   purple: '天阶',
   primary: '地阶',
   success: '玄阶',
-  warning: '帝阶',
+  warning: '帝阶'
 }
 
 export const propItemNames = {
@@ -66,26 +65,12 @@ export const propItemNames = {
   qingyuan: { name: '情缘', desc: '可以通过赠送礼物给NPC获得' },
   currency: { name: '鸿蒙石', desc: '可以通过击败世界BOSS获得' },
   cultivateDan: { name: '培养丹', desc: '可以通过探索获得' },
-  strengtheningStone: { name: '炼器石', desc: '可以通过分解装备获得' },
+  strengtheningStone: { name: '炼器石', desc: '可以通过分解装备获得' }
 }
 
-export const formatNumberToChineseUnit = (number) => {
+export const formatNumberToChineseUnit = number => {
   number = number > 0 ? Math.floor(number) : 0
-  const units = [
-    '',
-    '万',
-    '亿',
-    '兆',
-    '京',
-    '垓',
-    '秭',
-    '穰',
-    '沟',
-    '涧',
-    '正',
-    '载',
-    '极',
-  ]
+  const units = ['', '万', '亿', '兆', '京', '垓', '秭', '穰', '沟', '涧', '正', '载', '极']
   const bigTenThousand = window.BigInt(10000)
   let num = window.BigInt(number)
   let unitIndex = 0
@@ -101,7 +86,7 @@ export const formatNumberToChineseUnit = (number) => {
   return num.toString() + units[unitIndex] + additionalUnits
 }
 
-export const smoothScrollToBottom = (element) => {
+export const smoothScrollToBottom = element => {
   const start = element.scrollTop
   const end = element.scrollHeight
   const duration = 300
@@ -113,7 +98,6 @@ export const smoothScrollToBottom = (element) => {
     element.scrollTop = start + (end - start) * easeInOutCubic(progress)
     if (progress < 1) window.requestAnimationFrame(scroll)
   }
-  const easeInOutCubic = (t) =>
-    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+  const easeInOutCubic = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
   window.requestAnimationFrame(scroll)
 }

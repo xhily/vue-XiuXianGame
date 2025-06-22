@@ -23,9 +23,15 @@ const equips = {
         const qualityMultiplier = { info: 1.2, success: 2, primary: 3, purple: 5, warning: 7, danger: 10 }
         const multiplier = qualityMultiplier[quality]
         const dodge = ['accessory', 'sutra'].includes(type) ? this.equip_Criticalhitrate(lv) : 0
-        const attack = ['weapon', 'accessory', 'sutra'].includes(type) ? Math.floor(this.equip_Attack(lv) * multiplier) : 0
-        const health = ['armor', 'accessory', 'sutra'].includes(type) ? Math.floor(this.equip_Health(lv) * multiplier) : 0
-        const defense = ['armor', 'accessory', 'sutra'].includes(type) ? Math.floor(this.equip_Attack(lv) * multiplier) : 0
+        const attack = ['weapon', 'accessory', 'sutra'].includes(type)
+          ? Math.floor(this.equip_Attack(lv) * multiplier)
+          : 0
+        const health = ['armor', 'accessory', 'sutra'].includes(type)
+          ? Math.floor(this.equip_Health(lv) * multiplier)
+          : 0
+        const defense = ['armor', 'accessory', 'sutra'].includes(type)
+          ? Math.floor(this.equip_Attack(lv) * multiplier)
+          : 0
         const critical = ['weapon', 'accessory', 'sutra'].includes(type) ? this.equip_Criticalhitrate(lv) : 0
         const baseEquip = {
           id: Date.now(), // 装备ID
@@ -54,6 +60,7 @@ const equips = {
       }
     }
   },
+  // prettier-ignore
   equip_Weapons(lv, isNewbie = false) {
     const names_a = [
       '白玉净尘剑', '雪魄寒冰枪', '白龙吟风弓', '月华流光扇', '白玉玄灵笛',
@@ -81,6 +88,7 @@ const equips = {
     ]
     return this.drawPrize(lv, 'weapon', names_a, names_b, names_c, names_d, names_e, names_f, isNewbie)
   },
+  // prettier-ignore
   equip_Armors(lv, isNewbie = false) {
     const names_a = [
       '瑶池仙绡羽衣', '广寒玉兔霜甲', '昆仑玉璧战袍', '白龙吐珠云裳', '九天玄女素绫',
@@ -108,6 +116,7 @@ const equips = {
     ]
     return this.drawPrize(lv, 'armor', names_a, names_b, names_c, names_d, names_e, names_f, isNewbie)
   },
+  // prettier-ignore
   equip_Accessorys(lv, isNewbie = false) {
     const names_a = [
       '瑶池白玉簪', '月华流光坠', '寒霜凝露链', '九天玄女玉佩', '云锦织梦镯',
@@ -135,6 +144,7 @@ const equips = {
     ]
     return this.drawPrize(lv, 'accessory', names_a, names_b, names_c, names_d, names_e, names_f, isNewbie)
   },
+  // prettier-ignore
   equip_Sutras(lv, isNewbie = false) {
     const names_a = [
       '白玉净瓶', '寒霜琉璃镜', '瑶池雪莲珠', '九天玄冰尺', '月华宝莲灯',
@@ -199,13 +209,12 @@ const equips = {
       dodgeRate: 1.6 //闪避
     }
     // 计算评分
-    const score = (
+    const score =
       dodge * weights.dodgeRate * 100 +
       attack * weights.attack +
       (health / 100) * weights.health +
       defense * weights.defense +
       critical * weights.critRate * 100
-    )
     return Math.floor(score)
   }
 }

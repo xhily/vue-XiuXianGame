@@ -1,4 +1,5 @@
 const monsters = {
+  // prettier-ignore
   monster_Names(lv) {
     const names_a = [
       '影魅狸奴', '幽谷灵蛇', '雾隐狐仙', '松间灵猴', '月影蝠妖',
