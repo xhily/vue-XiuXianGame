@@ -2350,7 +2350,7 @@
     // 需要炼器的装备信息
     strengthenInfo.value = equipment
     // 炼器等级
-    if (player.value.equipment[type] && !player.equipment[type].hasOwnProperty('strengthen')) {
+    if (player.value.equipment[type] && !player.value.equipment[type].hasOwnProperty('strengthen')) {
       player.value.equipment[type].strengthen = equipment?.strengthen ? equipment?.strengthen : 0
     }
   }
