@@ -386,9 +386,9 @@
       // 重置扫荡结果
       sweepResults.value = { expGain: 0, moneyGain: 0, equipmentGained: 0 }
       // 设定每秒更新扫荡时间
-      sweepInterval.value = setInterval(sweep.value, 1000)
+      sweepInterval.value = setInterval(sweep, 1000)
       // 每30秒进行一次战斗
-      sweepFightInterval.value = setInterval(sweepFight.value, 30000)
+      sweepFightInterval.value = setInterval(sweepFight, 30000)
     } else {
       // 停止扫荡
       stopSweep()
