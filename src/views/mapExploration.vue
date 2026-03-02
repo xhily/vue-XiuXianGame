@@ -798,7 +798,7 @@
   const startFishing = () => {
     if (!holdingId.value) {
       moveButton()
-      holdingId.value = setInterval(moveButton.value, 100)
+      holdingId.value = setInterval(moveButton, 100)
     }
   }
 
@@ -927,6 +927,8 @@
     if (fishing.value.score >= maxScore && !fishing.value.gameOver) {
       fishing.value.gameOver = true
       const fishInfo = getRandomFish()
+      // 清空所有定时
+      clearAllTiming()
       ElMessageBox.confirm(fishInfo.description, fishInfo.name, {
         center: true,
         showClose: false,
@@ -956,6 +958,8 @@
       fishing.value.timeLeft--
       // 倒计时结束
       if (fishing.value.timeLeft == 0) {
+        // 清空所有定时
+        clearAllTiming()
         ElMessageBox.confirm('钓鱼失败，鱼溜走了！', '提示', {
           center: true,
           lockScroll: false,
@@ -1339,12 +1343,12 @@
 
   /* 钓鱼 */
   .diaoyu-shortcutKeys {
-    display: none;
+    display: block;
   }
 
   @media only screen and (max-width: 768px) {
     .shortcutKeys {
-      display: none;
+      display: block;
     }
 
     .diaoyu-shortcutKeys {
